@@ -13,8 +13,9 @@ import com.unprfct.productservice.dao.*;
 import com.unprfct.productservice.model.Category;
 import com.unprfct.productservice.model.Product;
 import com.unprfct.productservice.model.SubCategory;
+import lombok.AllArgsConstructor;
 
-
+@AllArgsConstructor
 @Service
 @Transactional
 public class ShoppingServiceImpl implements ShoppingService  {
