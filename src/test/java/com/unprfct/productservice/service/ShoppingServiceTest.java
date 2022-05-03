@@ -41,7 +41,11 @@ class ShoppingServiceTest {
 	@Test
 	@DisplayName("Fetching Data")
 	void getAllProductsTest() {
-		when(productRepository.findAll()).thenReturn(List.of(new Product(), new Product()));
+		List<Product> res = new ArrayList<>();
+		res.add(new Product());
+		res.add(new Product());
+		
+		when(productRepository.findAll()).thenReturn(res);
         List<Product> products = serviceImpl.getAllProducts();
 
         assertThat(products).isNotNull();
