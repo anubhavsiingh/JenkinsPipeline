@@ -1,11 +1,9 @@
 package com.unprfct.productservice.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +12,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+
 
 import com.unprfct.productservice.dao.CategoryRepository;
 import com.unprfct.productservice.dao.ProductRepository;
@@ -27,23 +23,19 @@ import com.unprfct.productservice.model.Category;
 import com.unprfct.productservice.model.Product;
 import com.unprfct.productservice.model.SubCategory;
 
+@RunWith(MockitoJUnitRunner.class)
 class ShoppingServiceTest {
 
-	@Mock
 	private ProductRepository productRepository;
-
-	@Mock
 	private CategoryRepository categoryRepository;
-	
-	@Mock
 	private SubCategoryRepository subCategoryRepo;
 	
-	@InjectMocks
 	private ShoppingServiceImpl serviceImpl;
 	
 	@BeforeEach
 	void setup() {
-		MockitoAnnotations.initMocks(this);
+		productRepository = mock(ProductRepository.class);
+		serviceImpl = new ShoppingServiceImpl(productRepository, categoryRepository, subCategoryRepo);
 	}
 	
 	@Test
